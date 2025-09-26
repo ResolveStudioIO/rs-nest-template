@@ -1,0 +1,23 @@
+name: Задача
+description: Обычная задача разработки
+title: "[TASK] "
+labels: ["настройка"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Цель
+      description: Что должно быть достигнуто?
+      placeholder: Кратко опиши цель
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги
+      description: Разбей задачу на чеклист
+      value: "- [ ] Шаг 1\n- [ ] Шаг 2"
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      description: Как поймём, что задача завершена?

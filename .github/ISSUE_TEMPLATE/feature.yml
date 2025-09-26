@@ -1,0 +1,17 @@
+name: Фича/улучшение
+description: Новая функциональность или улучшение
+title: "[FEAT] "
+labels: ["улучшение"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Проблема/мотив
+  - type: textarea
+    id: solution
+    attributes:
+      label: Предлагаемое решение
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки

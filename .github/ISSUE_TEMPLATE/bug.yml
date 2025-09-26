@@ -1,0 +1,27 @@
+name: Баг
+description: Что-то работает неправильно
+title: "[BUG] "
+labels: ["ошибка"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Что произошло?
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги для воспроизведения
+      value: "1. ...\n2. ..."
+  - type: input
+    id: expected
+    attributes:
+      label: Ожидалось
+  - type: input
+    id: actual
+    attributes:
+      label: Фактически
+  - type: textarea
+    id: extra
+    attributes:
+      label: Скриншоты/логи
