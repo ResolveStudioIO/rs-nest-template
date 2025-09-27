@@ -13,27 +13,27 @@
 ## Требования
 - Node.js 22.17.0
 - pnpm 10.17.1  
-Версии зафиксированы в CI.
+  Версии зафиксированы в CI.
 
 ## Быстрый старт
-1. Установить зависимости:  
+1. Установить зависимости:
 ```bash
   pnpm install
 ```
-2. Создать файл окружения:  
+2. Создать файл окружения:
 ```bash
   cp .env.example .env
 ```  
-   Заполнить переменные.
-3. Сгенерировать Prisma Client:  
+Заполнить переменные.
+3. Сгенерировать Prisma Client:
 ```bash
   pnpm prisma:generate
 ```
-4. Применить миграции:  
+4. Применить миграции:
 ```bash
   pnpm prisma:migrate
 ```
-5. Запустить проект:  
+5. Запустить проект:
 ```bash
   pnpm start:dev
 ```
@@ -47,32 +47,6 @@ http://localhost:3000/api/docs
 - `NODE_ENV`, `PORT`
 - `CORS_ORIGIN` — список доменов через запятую
 - `DATABASE_URL` — строка подключения Prisma
-
-## Структура проекта
-.
-├─ src/  
-│  ├─ main.ts  
-│  ├─ app.module.ts  
-│  ├─ config/env.validation.ts  
-│  ├─ common/filters/http-exception.filter.ts  
-│  └─ example/  
-│     ├─ example.module.ts  
-│     ├─ example.controller.ts  
-│     ├─ use-cases/example.use-case.ts  
-│     ├─ dto/responses/example-response.dto.ts  
-│     └─ types/outputs/example-output.type.ts  
-├─ prisma/  
-│  ├─ schema.prisma  
-│  ├─ migrations/20250926223158_init/  
-│  └─ seed.ts  
-├─ test/  
-│  ├─ example.e2e-spec.ts  
-│  └─ jest-e2e.json  
-└─ .github/  
-├─ ISSUE_TEMPLATE/{bug.yml,feature.yml,task.yml}  
-├─ workflows/{ci.yml,labels-sync.yml,release-please.yml}  
-├─ labels.yml  
-└─ PULL_REQUEST_TEMPLATE.md
 
 ## Скрипты и задачи
 - `pnpm prisma:generate` — генерация Prisma Client
