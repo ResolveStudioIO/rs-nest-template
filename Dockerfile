@@ -1,13 +1,22 @@
 FROM node:22.17.0-alpine AS builder
 WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@10.17.1 --activate
+
 COPY package.json pnpm-lock.yaml ./
-RUN npm i -g pnpm && pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 RUN pnpm build
 
-FROM node:22.17.0-alpine
+FROM node:22.17.0-alpine AS runner
 WORKDIR /app
-COPY --from=builder /app/dist ./dist
+
+RUN corepack enable && corepack prepare pnpm@10.17.1 --activate
+
 COPY package.json pnpm-lock.yaml ./
-RUN npm i -g pnpm && pnpm install --prod --frozen-lockfile
+RUN pnpm install --prod --frozen-lockfile
+
+COPY --from=builder /app/dist ./dist
+
 CMD ["pnpm", "start:prod"]
