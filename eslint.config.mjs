@@ -4,29 +4,28 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import { defineConfig } from 'eslint/config';
 
-export default tseslint.config(
+export default defineConfig([
   {
     ignores: ['eslint.config.mjs', 'prisma/seed.ts', 'commitlint.config.js'],
   },
+
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   eslintPluginPrettierRecommended,
+
   {
+    files: ['src/**/*.ts', 'apps/**/*.ts', 'libs/**/*.ts'],
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-      },
+      globals: { ...globals.node, ...globals.jest },
       sourceType: 'commonjs',
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    plugins: {
-      'simple-import-sort': simpleImportSort,
-    },
+    plugins: { 'simple-import-sort': simpleImportSort },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
@@ -34,27 +33,15 @@ export default tseslint.config(
 
       '@typescript-eslint/consistent-type-imports': [
         'error',
-        {
-          prefer: 'type-imports',
-          disallowTypeAnnotations: true,
-          fixStyle: 'inline-type-imports',
-        },
+        { prefer: 'type-imports', disallowTypeAnnotations: true, fixStyle: 'inline-type-imports' },
       ],
 
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
-        {
-          accessibility: 'explicit',
-          overrides: {
-            constructors: 'no-public',
-          },
-        },
+        { accessibility: 'explicit', overrides: { constructors: 'no-public' } },
       ],
 
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-      ],
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
 
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
@@ -68,10 +55,28 @@ export default tseslint.config(
         { blankLine: 'always', prev: '*', next: 'return' },
         { blankLine: 'always', prev: '*', next: ['if', 'for', 'switch', 'try'] },
         { blankLine: 'always', prev: ['if', 'for', 'switch', 'try'], next: '*' },
-        { blankLine: 'always', prev: 'method', next: 'method' },
-        { blankLine: 'always', prev: 'field', next: 'method' },
-        { blankLine: 'always', prev: 'method', next: 'field' },
       ],
+
+      'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     },
   },
-);
+
+  {
+    ...tseslint.configs.disableTypeChecked,
+    files: ['test/**/*.ts', '**/*.spec.ts', '**/*.e2e-spec.ts'],
+  },
+
+  {
+    files: ['test/**/*.ts', '**/*.spec.ts', '**/*.e2e-spec.ts'],
+    languageOptions: {
+      globals: { ...globals.node, ...globals.jest },
+    },
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+    },
+  },
+]);

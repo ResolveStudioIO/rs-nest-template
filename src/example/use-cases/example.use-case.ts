@@ -9,6 +9,7 @@ export class ExampleUseCase {
 
     public async execute(): Promise<ExampleOutputType> {
         const users = await this.prisma.user.findMany();
+
         return { users };
     }
 }
