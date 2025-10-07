@@ -20,16 +20,26 @@ export class EnvironmentVariables {
     public NODE_ENV: Env;
 
     /** Application port number (e.g., 3000). */
-    @IsNumber()
+    @IsNumber({}, { message: 'PORT must be a numeric value' })
     public PORT: number;
 
     /** PostgreSQL connection string. */
-    @Matches(/^postgres(ql)?:\/\/.+$/)
+    @Matches(/^postgres(ql)?:\/\/.+$/, {
+        message: 'DATABASE_URL must be a valid PostgreSQL connection string',
+    })
     public DATABASE_URL: string;
 
     /** Comma-separated list of allowed CORS origins. */
     @IsString()
     public CORS_ORIGIN: string;
+
+    /** Throttler TTL (milliseconds, e.g. 60000). */
+    @IsNumber({}, { message: 'THROTTLER_TTL must be a numeric value (milliseconds)' })
+    public THROTTLER_TTL: number;
+
+    /** Throttler request limit per TTL window (e.g. 100). */
+    @IsNumber({}, { message: 'THROTTLER_LIMIT must be a numeric value' })
+    public THROTTLER_LIMIT: number;
 }
 
 /**

@@ -7,6 +7,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { validate } from './config/env.validation';
 import { ExampleModule } from './example/example.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { ExampleModule } from './example/example.module';
                 ],
             }),
         }),
+        PrismaModule,
         ExampleModule,
     ],
     providers: [
