@@ -30,6 +30,14 @@ export class EnvironmentVariables {
     /** Comma-separated list of allowed CORS origins. */
     @IsString()
     public CORS_ORIGIN: string;
+
+    /** Throttler TTL (e.g., 60_000). */
+    @IsNumber()
+    public THROTTLER_TTL: number;
+
+    /** Throttler limit (e.g., 100). */
+    @IsNumber()
+    public THROTTLER_LIMIT: number;
 }
 
 /**
