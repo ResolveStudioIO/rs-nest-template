@@ -1,9 +1,16 @@
 {
-  "bootstrap-sha": "",
-  "release-type": "node",
-  "packages": {
-    ".": {
-      "package-name": "rs-nest-template"
+    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+
+    "pull-request-title-pattern": "chore(release): ${component} v${version}",
+    "pull-request-header": "## Type\n- [ ] feat\n- [ ] fix\n- [ ] refactor\n- [ ] docs\n- [ ] chore\n\n## Summary\nBriefly describe what was changed and why.\n\n## Related Issues\nCloses #<issue-number> (if applicable)\n\n## Checklist\n- [ ] Code formatted with Prettier\n- [ ] Linter passes without errors\n- [ ] Tests added or updated (if necessary)\n- [ ] Documentation updated (README / Swagger)\n\n## Screenshots / Examples\n(if applicable)\n",
+
+    "packages": {
+        ".": {
+            "package-name": "rs-nest-template",
+            "release-type": "node",
+            "changelog-path": "CHANGELOG.md",
+            "include-v-in-tag": true,
+            "include-component-in-tag": false
+        }
     }
-  }
 }

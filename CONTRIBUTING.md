@@ -1,32 +1,63 @@
-## Ветки
+## Branches
 
-В проекте используются три основные ветки:
+The project uses three main branches:
 
-- **production** — стабильная версия, готовая к деплою.
-- **staging** — промежуточная ветка для тестирования перед релизом.
-- **develop** — основная ветка разработки, сюда вливаются фичи и фиксы.
+- **production** — stable, ready for deployment.
+- **staging** — pre-release testing branch.
+- **develop** — main development branch; all features and fixes are merged here.
 
-Мерджи идут по цепочке:  
+Merge flow:
 `develop` → `staging` → `production`
 
-CI/CD и синхронизация меток настроены для всех трёх веток.
+CI/CD pipelines and label synchronization are configured for all three branches.
 
-## Коммиты
-- Сообщения коммитов пишем в стиле [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
-- **Тип всегда на английском**, описание можно писать на русском.
-- Формат: `<type>: <описание>`
+### Branch naming convention
+All feature and fix branches must follow this pattern:
+```
 
-### Типы
-- `feat` — новая функциональность
-- `fix` — исправление ошибок
-- `chore` — рутинные задачи (настройки, зависимости)
-- `docs` — документация
-- `refactor` — рефакторинг кода
-- `test` — тесты
+RSNT-<ISSUE_NUMBER>-<short-description>
 
-### Примеры
-- `feat: добавить сущность пользователя через prisma`
-- `fix: исправить парсинг CORS конфига`
-- `chore: обновить правила eslint`
-- `docs: добавить swagger документацию для example модуля`
+```
 
+**Examples:**
+```
+
+RSNT-12-add-user-entity
+RSNT-45-fix-cors-config
+RSNT-77-update-eslint-rules
+
+```
+
+Prefix `RSNT` stands for **rs-nest-template**, keeping branch names consistent across ResolveStudio repositories.
+
+---
+
+## Commits
+
+Commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) convention.
+
+- **Type must always be in English**, while the description may be in Russian if needed.
+- Format:
+```
+
+<type>: <description>
+
+```
+
+### Types
+- `feat` — new feature
+- `fix` — bug fix
+- `chore` — routine task (configs, dependencies, scripts)
+- `docs` — documentation changes
+- `refactor` — code refactoring without changing behavior
+- `test` — adding or updating tests
+
+### Examples
+```
+
+feat: add user entity via prisma
+fix: correct CORS config parsing
+chore: update eslint rules
+docs: add swagger documentation for example module
+
+```

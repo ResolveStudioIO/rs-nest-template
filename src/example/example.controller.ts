@@ -10,13 +10,13 @@ export class ExampleController {
     constructor(private readonly exampleUseCase: ExampleUseCase) {}
 
     @Get()
-    @ApiOperation({ summary: 'Пример эндпоинта "hello"' })
+    @ApiOperation({ summary: 'Example "hello" endpoint' })
     @ApiResponse({
         status: 200,
-        description: 'Успешный ответ',
+        description: 'Successful response',
         type: ExampleResponseDto,
     })
-    public getHello(): ExampleResponseDto {
+    public getHello(): Promise<ExampleResponseDto> {
         return this.exampleUseCase.execute();
     }
 }

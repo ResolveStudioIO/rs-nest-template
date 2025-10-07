@@ -1,14 +1,21 @@
-## Описание
-Кратко: что изменилось и зачем?
+## Type
+- [ ] feat
+- [ ] fix
+- [ ] refactor
+- [ ] docs
+- [ ] chore
 
-## Связанные задачи
-Closes #<номер> (если есть)
+## Summary
+Briefly describe what was changed and why.
 
-## Чеклист
-- [ ] Код отформатирован (prettier)
-- [ ] Линтер без ошибок
-- [ ] Добавлены/обновлены тесты (по необходимости)
-- [ ] Обновлена документация (README/Swagger)
+## Related Issues
+Closes #<issue-number> (if applicable)
 
-## Скриншоты/Примеры
-(если применимо)
+## Checklist
+- [ ] Code formatted with Prettier
+- [ ] Linter passes without errors
+- [ ] Tests added or updated (if necessary)
+- [ ] Documentation updated (README / Swagger)
+
+## Screenshots / Examples
+(if applicable)
