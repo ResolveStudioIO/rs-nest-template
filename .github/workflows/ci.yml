@@ -70,6 +70,9 @@ jobs:
         run: pnpm test:e2e
 
       - name: Run commitlint on PR commits
-        if: github.event_name == 'pull_request'
         run: |
-          pnpm dlx commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.sha }}
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            pnpm dlx commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.sha }}
+          else
+            pnpm dlx commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD
+          fi
