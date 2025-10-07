@@ -1,4 +1,5 @@
+import { type User } from 'generated/prisma';
+
 export interface ExampleOutputType {
-    ok: boolean;
-    msg: string;
+    users: User[];
 }

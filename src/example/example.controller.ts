@@ -16,7 +16,7 @@ export class ExampleController {
         description: 'Successful response',
         type: ExampleResponseDto,
     })
-    public getHello(): ExampleResponseDto {
+    public getHello(): Promise<ExampleResponseDto> {
         return this.exampleUseCase.execute();
     }
 }
