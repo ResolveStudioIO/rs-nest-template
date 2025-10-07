@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
@@ -14,12 +14,18 @@ import { ExampleModule } from './example/example.module';
             isGlobal: true,
             validate,
         }),
-        ThrottlerModule.forRoot([
-            {
-                ttl: 60_000,
-                limit: 100,
-            },
-        ]),
+        ThrottlerModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: (config: ConfigService) => ({
+                throttlers: [
+                    {
+                        ttl: config.getOrThrow<number>('THROTTLER_TTL'),
+                        limit: config.getOrThrow<number>('THROTTLER_LIMIT'),
+                    },
+                ],
+            }),
+        }),
         ExampleModule,
     ],
     providers: [

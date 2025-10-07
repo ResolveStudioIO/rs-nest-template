@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ExampleResponseDto {
-    @ApiProperty({ example: true, description: 'Флаг успешного ответа' })
+    @ApiProperty({ example: true, description: 'Indicates whether the response was successful' })
     public ok: boolean;
 
-    @ApiProperty({ example: 'Привет из rs-nest-template', description: 'Сообщение' })
+    @ApiProperty({ example: 'Hello from rs-nest-template', description: 'Response message' })
     public msg: string;
 }

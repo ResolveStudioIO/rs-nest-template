@@ -1,71 +1,71 @@
-- name: "тип: ошибка"
-  color: "d73a4a"
-  description: "Что-то работает неправильно"
+- name: 'type: bug'
+  color: 'd73a4a'
+  description: 'Something is not working properly'
 
-- name: "тип: фича"
-  color: "a2eeef"
-  description: "Новая функциональность"
+- name: 'type: feature'
+  color: 'a2eeef'
+  description: 'New functionality or major addition'
 
-- name: "тип: улучшение"
-  color: "1d76db"
-  description: "Улучшение существующей функциональности"
+- name: 'type: improvement'
+  color: '1d76db'
+  description: 'Enhancement to existing functionality'
 
-- name: "тип: документация"
-  color: "0075ca"
-  description: "Изменения или дополнения к документации"
+- name: 'type: documentation'
+  color: '0075ca'
+  description: 'Changes or additions to documentation'
 
-- name: "тип: рефакторинг"
-  color: "c5def5"
-  description: "Переработка кода без изменения поведения"
+- name: 'type: refactor'
+  color: 'c5def5'
+  description: 'Code restructuring without behavior change'
 
-- name: "тип: исследование"
-  color: "cfd3d7"
-  description: "R&D, прототипы, оценка вариантов"
+- name: 'type: research'
+  color: 'cfd3d7'
+  description: 'R&D, prototype, or exploration task'
 
-- name: "приоритет: высокий"
-  color: "b60205"
-  description: "Горит, влияет на релиз или пользователей"
+- name: 'priority: high'
+  color: 'b60205'
+  description: 'Critical issue; affects release or users'
 
-- name: "приоритет: средний"
-  color: "d93f0b"
-  description: "Важно, но может подождать"
+- name: 'priority: medium'
+  color: 'd93f0b'
+  description: 'Important but not blocking release'
 
-- name: "приоритет: низкий"
-  color: "lightgray"
-  description: "Хорошо бы сделать, но не критично"
+- name: 'priority: low'
+  color: 'lightgray'
+  description: 'Nice to have; not urgent'
 
-- name: "нужна помощь"
-  color: "008672"
-  description: "Нужны подсказки, менторство или дополнительные руки"
+- name: 'help wanted'
+  color: '008672'
+  description: 'Needs advice, mentoring, or extra hands'
 
-- name: "вопрос"
-  color: "d876e3"
-  description: "Нужно уточнение/обсуждение"
+- name: 'question'
+  color: 'd876e3'
+  description: 'Clarification or discussion needed'
 
-- name: "дубликат"
-  color: "cfd3d7"
-  description: "Такая задача уже есть"
+- name: 'duplicate'
+  color: 'cfd3d7'
+  description: 'This issue or PR already exists'
 
-- name: "некорректно"
-  color: "e4e669"
-  description: "Описано недостаточно или неверно"
+- name: 'invalid'
+  color: 'e4e669'
+  description: 'Not enough info or incorrectly described'
 
-- name: "не будем чинить"
-  color: "ffffff"
-  description: "Осознанно решили не делать"
+- name: 'wontfix'
+  color: 'ffffff'
+  description: 'Decided not to fix or implement'
 
-- name: "заблокировано"
-  color: "000000"
-  description: "Зависит от внешних условий/других задач"
+- name: 'blocked'
+  color: '000000'
+  description: 'Blocked by external dependency or another task'
 
-- name: "статус: в работе"
-  color: "0366d6"
-  description: "Задача в процессе выполнения"
+- name: 'status: in progress'
+  color: '0366d6'
+  description: 'Currently being worked on'
 
-- name: "статус: ревью"
-  color: "fbca04"
-  description: "Ожидает code review"
+- name: 'status: review'
+  color: 'fbca04'
+  description: 'Awaiting code review'
 
-- name: "статус: готово к релизу"
-  color: "0e8a16"
-  description: "Можно включать в ближайший релиз"
+- name: 'status: ready for release'
+  color: '0e8a16'
+  description: 'Ready to include in the next release'

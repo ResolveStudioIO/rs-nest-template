@@ -21,12 +21,12 @@ describe('ExampleController (e2e)', () => {
         await app.close();
     });
 
-    it('/example (GET) → должен вернуть приветственное сообщение', async () => {
+    it('/example (GET) → should return a greeting message', async () => {
         const res = await request(app.getHttpServer()).get('/example').expect(200);
 
         expect(res.body).toEqual({
             ok: true,
-            msg: 'Привет из rs-nest-template',
+            msg: 'Hello from rs-nest-template',
         });
     });
 });

@@ -5,6 +5,6 @@ import { ExampleOutputType } from '../types';
 @Injectable()
 export class ExampleUseCase {
     public execute(): ExampleOutputType {
-        return { ok: true, msg: 'Привет из rs-nest-template' };
+        return { ok: true, msg: 'Hello from rs-nest-template' };
     }
 }
