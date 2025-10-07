@@ -28,7 +28,10 @@ jobs:
           --health-retries=5
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -46,7 +49,7 @@ jobs:
           cp .env.example .env
           echo "DATABASE_URL=postgresql://user:password@localhost:5432/mydatabase" >> .env
 
-      - name: Install deps
+      - name: Install dependencies
         run: pnpm install
 
       - name: Generate Prisma client
@@ -55,21 +58,21 @@ jobs:
       - name: Run migrations
         run: pnpm prisma:migrate deploy
 
+      - name: Seed database
+        run: pnpm prisma:seed
+
       - name: Lint
         run: pnpm lint
 
       - name: Build
         run: pnpm build
 
-      - name: Seed database
-        run: pnpm prisma:seed
-
       - name: Run e2e tests
         env:
           DATABASE_URL: postgresql://user:password@localhost:5432/mydatabase
         run: pnpm test:e2e
 
-      - name: Run commitlint on PR commits
+      - name: Run commitlint
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             pnpm dlx commitlint --from=${{ github.event.pull_request.base.sha }} --to=${{ github.sha }}
