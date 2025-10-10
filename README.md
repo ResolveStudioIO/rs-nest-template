@@ -105,7 +105,7 @@ Includes `Dockerfile` and `compose.yaml` for local development with PostgreSQL a
 
 ## Maintainer
 
-- Aidamir Kambiev — creator of the template and founder of Resolve Studio.
+- Aidamir Kambiev — creator and primary maintainer of the template, founder of Resolve Studio.
   GitHub: [@Aidamirrrrrr](https://github.com/Aidamirrrrrr)
 
 ## Contributors
@@ -125,6 +125,6 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the Pull Request template.
 ## License
 
 MIT License © 2025 Resolve Studio
-Created by Aidamir (@Aidamirrrrrr) as part of the Resolve Studio internal toolkit.
+Created by Aidamir ([@Aidamirrrrrr](https://github.com/Aidamirrrrrr)) as part of the Resolve Studio internal toolkit.
 
 See [LICENSE](./LICENSE) for details.
