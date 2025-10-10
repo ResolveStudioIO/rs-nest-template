@@ -1,7 +1,7 @@
 {
     "name": "rs-nest-template",
     "version": "1.0.0",
-    "author": "Resolve Studio",
+    "author": "Aidamir Kambiev / Resolve Studio",
     "private": true,
     "license": "MIT",
     "scripts": {

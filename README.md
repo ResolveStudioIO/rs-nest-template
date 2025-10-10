@@ -114,9 +114,9 @@ Thanks to everyone who helps improve this template.
 
 [![Contributors](https://contrib.rocks/image?repo=ResolveStudioIO/rs-nest-template)](https://github.com/ResolveStudioIO/rs-nest-template/graphs/contributors)
 
-## Acknowledgements
+## Contributing
 
-See [`AUTHORS.md`](./AUTHORS.md) for the full list of authors and acknowledgements.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the Pull Request template.
 
 ## Support & Issues
 
@@ -128,7 +128,3 @@ MIT License © 2025 Resolve Studio
 Created by Aidamir (@Aidamirrrrrr) as part of the Resolve Studio internal toolkit.
 
 See [LICENSE](./LICENSE) for details.
-
-## Contributing
-
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the Pull Request template.
