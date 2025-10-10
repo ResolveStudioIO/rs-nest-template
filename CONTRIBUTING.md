@@ -61,3 +61,12 @@ chore: update eslint rules
 docs: add swagger documentation for example module
 
 ```
+
+## Credits
+
+- The template was created and is maintained by **Aidamir Kambiev** (Resolve Studio).
+- All contributors are automatically recognized on GitHub. If you deliver a significant feature or improvement, feel free to add yourself to [`AUTHORS.md`](./AUTHORS.md) in your PR.
+
+## Support & Issues
+
+- Discussion and bug reports are in the section [GitHub Issues](https://github.com/ResolveStudioIO/rs-nest-template/issues).
