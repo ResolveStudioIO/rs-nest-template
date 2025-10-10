@@ -1,3 +1,9 @@
+[![CI](https://github.com/ResolveStudioIO/rs-nest-template/actions/workflows/ci.yml/badge.svg)](https://github.com/ResolveStudioIO/rs-nest-template/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Release](https://img.shields.io/github/v/release/ResolveStudioIO/rs-nest-template)](https://github.com/ResolveStudioIO/rs-nest-template/releases)
+[![Changelog](https://img.shields.io/badge/Changelog-CHANGELOG.md-informational.svg)](./CHANGELOG.md)
+[![Last Commit](https://img.shields.io/github/last-commit/ResolveStudioIO/rs-nest-template)](https://github.com/ResolveStudioIO/rs-nest-template/commits)
+
 # rs-nest-template
 
 A ready-to-use **NestJS + Prisma** template with CI setup, GitHub labels, and Issue Forms.
@@ -97,10 +103,28 @@ Additional automation:
 
 Includes `Dockerfile` and `compose.yaml` for local development with PostgreSQL and the application.
 
-## License
+## Maintainer
 
-MIT
+- Aidamir Kambiev — creator of the template and founder of Resolve Studio.
+  GitHub: [@Aidamirrrrrr](https://github.com/Aidamirrrrrr)
+
+## Contributors
+
+Thanks to everyone who helps improve this template.
+
+[![Contributors](https://contrib.rocks/image?repo=ResolveStudioIO/rs-nest-template)](https://github.com/ResolveStudioIO/rs-nest-template/graphs/contributors)
 
 ## Contributing
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the Pull Request template.
+
+## Support & Issues
+
+- Discussion and bug reports are in the section [GitHub Issues](https://github.com/ResolveStudioIO/rs-nest-template/issues).
+
+## License
+
+MIT License © 2025 Resolve Studio
+Created by Aidamir (@Aidamirrrrrr) as part of the Resolve Studio internal toolkit.
+
+See [LICENSE](./LICENSE) for details.
