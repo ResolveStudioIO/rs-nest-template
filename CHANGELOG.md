@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/ResolveStudioIO/rs-nest-template/compare/v1.1.0...v1.2.0) (2025-10-11)
+
+
+### Features
+
+* harden template defaults and docs ([c027f4a](https://github.com/ResolveStudioIO/rs-nest-template/commit/c027f4a5d8c69c8336a839143b796c6803203fca))
+* harden template defaults and docs ([7fe97e0](https://github.com/ResolveStudioIO/rs-nest-template/commit/7fe97e074bd66efc850c1e6f7596a51c592116f9))
+
 ## [1.1.0](https://github.com/ResolveStudioIO/rs-nest-template/compare/v1.0.0...v1.1.0) (2025-10-07)
 
 
