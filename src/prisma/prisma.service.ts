@@ -5,13 +5,13 @@ import { PrismaClient } from '@prisma/client';
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     private readonly logger = new Logger(PrismaService.name);
 
-    public async onModuleDestroy(): Promise<void> {
-        await this.$disconnect();
-        this.logger.log('Disconnected from database');
-    }
-
     public async onModuleInit(): Promise<void> {
         await this.$connect();
         this.logger.log('Connected to database');
+    }
+
+    public async onModuleDestroy(): Promise<void> {
+        await this.$disconnect();
+        this.logger.log('Disconnected from database');
     }
 }
