@@ -1,5 +1,4 @@
-import { Module } from '@nestjs/common';
-import { ValidationPipe } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
@@ -33,7 +32,14 @@ import { PrismaModule } from './prisma/prisma.module';
     providers: [
         {
             provide: APP_PIPE,
-            useValue: new ValidationPipe({ transform: true }),
+            useValue: new ValidationPipe({
+                transform: true,
+                transformOptions: {
+                    enableImplicitConversion: true,
+                },
+                whitelist: true,
+                forbidNonWhitelisted: true,
+            }),
         },
         {
             provide: APP_FILTER,

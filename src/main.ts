@@ -13,11 +13,15 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const configService = app.get(ConfigService<EnvironmentVariables>);
 
-    const port = configService.getOrThrow<string>('PORT');
-    const corsOrigins = configService
-        .getOrThrow<string>('CORS_ORIGIN')
-        .split(',')
-        .map((o) => o.trim());
+    const port = configService.getOrThrow<number>('PORT');
+    const corsRaw = configService.getOrThrow<string>('CORS_ORIGIN').trim();
+    const corsOrigins =
+        corsRaw === '*'
+            ? '*'
+            : corsRaw
+                  .split(',')
+                  .map((origin) => origin.trim())
+                  .filter(Boolean);
 
     app.enableCors({
         origin: corsOrigins,
@@ -36,6 +40,8 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, config);
 
     SwaggerModule.setup('api/docs', app, document);
+
+    app.enableShutdownHooks();
 
     await app.listen(port);
 

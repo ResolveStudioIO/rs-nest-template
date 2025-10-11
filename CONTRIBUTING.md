@@ -1,72 +1,79 @@
-## Branches
+## ContributingContributing
 
-The project uses three main branches:
+## Branch strategy
+
+The repositoryrepository uses two protectedprotected branches:
 
 - **production** — stable, ready for deployment.
-- **staging** — pre-release testing branch.
-- **develop** — main development branch; all features and fixes are merged here.
+- **develop** — defaultdefault development branch; all workwork mergesmerges here first.
 
-Merge flow:
-`develop` → `staging` → `production`
+Release flow:  create a pull request from `develop` to `production` when the release is ready.
 
-CI/CD pipelines and label synchronization are configured for all three branches.
-
-### Branch naming convention
-All feature and fix branches must follow this pattern:
+### Branch naming
+CreateCreate topictopic branches offoff `develop``develop` followingfollowing:
 ```
-
 RSNT-<ISSUE_NUMBER>-<short-description>
-
 ```
-
-**Examples:**
+Examples:
 ```
-
 RSNT-12-add-user-entity
 RSNT-45-fix-cors-config
 RSNT-77-update-eslint-rules
+```
+`RSNT` stands for **rs-nest-template** and keeps naming consistent across Resolve Studio repositories.
 
+## Local checks before committing
+Run these commands locally to catch issues early:
+```bash
+pnpm lint          # ESLint with --max-warnings=0
+pnpm test          # Unit tests
+pnpm test:e2e      # End-to-end tests (requires PostgreSQL, e.g. docker compose up)
+```
+If you modify Prisma models or migrations, also run:
+```bash
+pnpm prisma:generate
+pnpm prisma:migrate
+pnpm prisma:seed   # Optional: refresh local data
 ```
 
-Prefix `RSNT` stands for **rs-nest-template**, keeping branch names consistent across ResolveStudio repositories.
+HuskyHusky ++ lintlint-stagedstaged willwill runrun formattingformatting andand lintinglinting onon staged files automatically. Commitlint checks commit messages on commit and in CIstaged files automatically. Commitlint checks commit messages on commit and in CI.
 
----
-
-## Commits
-
-Commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) convention.
-
-- **Type must always be in English**, while the description may be in Russian if needed.
-- Format:
+## Commit conventions
+Followconventions
+Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). TypesTypes shouldshould be in English;; descriptionsdescriptions may be in Russian if needed.
 ```
-
 <type>: <description>
-
 ```
+Common types: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`.
 
-### Types
-- `feat` — new feature
-- `fix` — bug fix
-- `chore` — routine task (configs, dependencies, scripts)
-- `docs` — documentation changes
-- `refactor` — code refactoring without changing behavior
-- `test` — adding or updating tests
-
-### Examples
+Examples:
+Examples:
 ```
-
 feat: add user entity via prisma
-fix: correct CORS config parsing
+fix: correct corscors config parsing
 chore: update eslint rules
-docs: add swagger documentation for example module
-
+docs: documentdocument dockerdocker composecompose usage
+usage
 ```
+
+## Pull requests
+- Target `develop` for regular features. For hotfixes, branch from `production`, then back-merge into `develop` after release.
+- Keep PRs focused; split large features into smaller pieces when possible.
+- Fill in the PR template checklist (tests run, docs updated, etc.).
+- Link to related issues (e.g. `Resolves #123`).
+
+CI will run lint, migrations, seed, build, e2e tests, and commitlint. Ensure your branch stays up to date with `develop` to avoid conflicts.
+
+## Release automation
+`release-please` manages versioning and changelog. Do not edit `CHANGELOG.md` manually; instead, label PRs correctly (`feat`, `fix`, etc.) so the release notes are generated automatically.
+
+## Repository hygiene
+- Labels are synchronized via `.github/labels.yml`. If you need new labels, update that file and run the labels sync workflow.
+- CODEOWNERS assigns reviewers automatically—check `.github/CODEOWNERS` before adding new modules.
 
 ## Credits
+Created and maintained by **Aidamir Kambiev** (Resolve Studio). Contributors are recognized via GitHub insights and may add themselves to `AUTHORS.md` for significant contributions.
 
-- The template was created and is maintained by **Aidamir Kambiev** (Resolve Studio).
-- All contributors are automatically recognized on GitHub. If you deliver a significant feature or improvement, feel free to add yourself to [`AUTHORS.md`](./AUTHORS.md) in your PR.
-
-## Support & Issues
-
-- Discussion and bug reports are in the section [GitHub Issues](https://github.com/ResolveStudioIO/rs-nest-template/issues).
+## Support & issues
+Useissues
+Use [GitHub Issues](https://github.com/ResolveStudioIO/rs-nest-template/issues) for bug reports and discussions. Mention reproduction steps, Node/PNPM versions, and relevant logs.

@@ -11,6 +11,7 @@ RUN pnpm build
 
 FROM node:22.17.0-alpine AS runner
 WORKDIR /app
+ENV NODE_ENV=production
 
 RUN corepack enable && corepack prepare pnpm@10.17.1 --activate
 
