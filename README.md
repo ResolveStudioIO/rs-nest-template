@@ -100,7 +100,8 @@ Launch APIAPI and PostgreSQL via Dockerand PostgreSQL via Docker:
 ```bash
 docker compose up --build
 ```
-The compose file waits for the database to be healthy and sets `DATABASE_URL` for the API container automatically.```bash
+The compose file waits for the database to be healthy and sets `DATABASE_URL` for the API container automatically.
+```bash
 docker compose up --build
 ```
 The compose file waits for the database to be healthy and sets `DATABASE_URL` for the API container automatically.
@@ -111,7 +112,8 @@ pnpm lint            # ESLint with --max-warnings=0
 pnpm lint:fix        # ESLint autofix
 pnpm test            # Unit tests
 pnpm test:e2e        # End-to-end tests (requires PostgreSQL, e.g. via docker compose)
-```tests and linters
+```
+tests and linters
 ```bash
 pnpm lint            # ESLint with --max-warnings=0
 pnpm lint:fix        # ESLint autofix
