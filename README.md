@@ -9,6 +9,7 @@
 A ready-to-run **NestJS + Prisma** starter that ships with battle-tested tooling: CI, Docker, release automation, and repository hygiene.
 
 ## Features
+
 - **NestJS 11** with a global `ValidationPipe`, opinionated security defaults (helmet, compression, throttling), and graceful shutdown hooks.
 - **Prisma ORM** for PostgreSQL with migrations, seeding, and a reusable Prisma service module.
 - **API documentation** via Swagger at `/api/docs`, with DTOs separated from Prisma models.
@@ -18,6 +19,7 @@ A ready-to-run **NestJS + Prisma** starter that ships with battle-tested tooling
 - **Container-ready** Dockerfile and Compose setup for local development with PostgreSQL.
 
 ## Project structure
+
 ```text
 src/
   app.module.ts        # Root module with global providers and filters
@@ -37,6 +39,7 @@ Dockerfile, compose.yaml, tsconfig*.json, etc.
 ```
 
 ## Requirements
+
 - **Node.js** 22.17.0
 - **pnpm** 10.17.1
 - **PostgreSQL** 16+
@@ -44,6 +47,7 @@ Dockerfile, compose.yaml, tsconfig*.json, etc.
 Versions are pinned in CI and Docker images to keep local and remote environments consistent.
 
 ## Getting started
+
 1. Install dependencies:
    ```bash
    pnpm install
@@ -65,6 +69,7 @@ Versions are pinned in CI and Docker images to keep local and remote environment
 5. Open Swagger UI at [http://localhost:3000/api/docs](http://localhost:3000/api/docs).
 
 ### Docker Compose
+
 Spin up the API alongside PostgreSQL:
 ```bash
 docker compose up --build
@@ -72,6 +77,7 @@ docker compose up --build
 The service waits for the database to become healthy and injects `DATABASE_URL` automatically.
 
 ### Tests & linting
+
 ```bash
 pnpm lint            # ESLint with --max-warnings=0
 pnpm lint:fix        # ESLint autofix pass
@@ -80,6 +86,7 @@ pnpm test:e2e        # End-to-end tests (requires a PostgreSQL instance)
 ```
 
 ## Configuration
+
 Environment variables are validated in `src/config/env.validation.ts`. Key options:
 - `NODE_ENV` — `development` | `test` | `production`
 - `PORT` — HTTP port for the Nest application
@@ -90,25 +97,30 @@ Environment variables are validated in `src/config/env.validation.ts`. Key optio
 Refer to `.env.example` for defaults. CI generates `.env` automatically before migrations and tests.
 
 ## Automation & repository hygiene
+
 - **CI** (`.github/workflows/ci.yml`) runs linting, migrations, seeds, build, e2e tests, and commitlint on pull requests and `production` pushes.
 - **Labels sync** keeps repository labels aligned with `.github/labels.yml`.
 - **Release-please** handles semantic versioning and changelog generation.
 - **Husky** hooks run lint-staged formatting and Commitlint before commits land in the repo.
 
 ## Development workflow
+
 - Branch from `develop` using the convention from [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 - Open pull requests into `develop`. When the release is ready, merge `develop → production`.
 - For hotfixes, branch from `production`, release, then back-merge into `develop`.
 
 ## Troubleshooting
+
 - **Database connection errors**: ensure PostgreSQL is running and `DATABASE_URL` points to the correct host (Docker uses `db`).
 - **Failing e2e tests**: each test seeds its own data; update expectations in `test/example.e2e-spec.ts` if you modify the seed.
 - **CORS issues**: confirm `CORS_ORIGIN` formatting (comma-separated, no spaces) or use `*` for local development.
 
 ## Contributors
+
 <a href="https://github.com/ResolveStudioIO/rs-nest-template/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ResolveStudioIO/rs-nest-template" alt="Contributors" />
 </a>
 
 ## Credits
+
 Created and maintained by **Aidamir Kambiev** (Resolve Studio). See [LICENSE](./LICENSE) for details.
