@@ -1,16 +1,14 @@
-## ContributingContributing
+## Branch Strategy
 
-## Branch strategy
+The repository uses two protected branches:
 
-The repositoryrepository uses two protectedprotected branches:
+- **production** — stable and ready for deployment.
+- **develop** — the default development branch where all work lands first.
 
-- **production** — stable, ready for deployment.
-- **develop** — defaultdefault development branch; all workwork mergesmerges here first.
+When a release is ready, create a pull request from `develop` to `production`.
 
-Release flow:  create a pull request from `develop` to `production` when the release is ready.
-
-### Branch naming
-CreateCreate topictopic branches offoff `develop``develop` followingfollowing:
+### Branch Naming
+Create topic branches off `develop` using the convention:
 ```
 RSNT-<ISSUE_NUMBER>-<short-description>
 ```
@@ -22,8 +20,8 @@ RSNT-77-update-eslint-rules
 ```
 `RSNT` stands for **rs-nest-template** and keeps naming consistent across Resolve Studio repositories.
 
-## Local checks before committing
-Run these commands locally to catch issues early:
+## Local Checks
+Run these commands before pushing a branch:
 ```bash
 pnpm lint          # ESLint with --max-warnings=0
 pnpm test          # Unit tests
@@ -36,44 +34,40 @@ pnpm prisma:migrate
 pnpm prisma:seed   # Optional: refresh local data
 ```
 
-HuskyHusky ++ lintlint-stagedstaged willwill runrun formattingformatting andand lintinglinting onon staged files automatically. Commitlint checks commit messages on commit and in CIstaged files automatically. Commitlint checks commit messages on commit and in CI.
+Husky and lint-staged execute formatting and linting on staged files automatically. Commitlint validates commit messages locally and in CI.
 
-## Commit conventions
-Followconventions
-Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). TypesTypes shouldshould be in English;; descriptionsdescriptions may be in Russian if needed.
+## Commit Conventions
+Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). Types should be in English; descriptions may use Russian when helpful.
 ```
 <type>: <description>
 ```
 Common types: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`.
 
 Examples:
-Examples:
 ```
 feat: add user entity via prisma
-fix: correct corscors config parsing
+fix: correct cors config parsing
 chore: update eslint rules
-docs: documentdocument dockerdocker composecompose usage
-usage
+docs: document docker compose usage
 ```
 
-## Pull requests
-- Target `develop` for regular features. For hotfixes, branch from `production`, then back-merge into `develop` after release.
-- Keep PRs focused; split large features into smaller pieces when possible.
+## Pull Requests
+- Target `develop` for features and regular fixes. For hotfixes, branch from `production`, then back-merge into `develop` after release.
+- Keep PRs focused; split large changes into smaller pieces when possible.
 - Fill in the PR template checklist (tests run, docs updated, etc.).
-- Link to related issues (e.g. `Resolves #123`).
+- Link related issues (e.g. `Resolves #123`).
 
-CI will run lint, migrations, seed, build, e2e tests, and commitlint. Ensure your branch stays up to date with `develop` to avoid conflicts.
+CI runs linting, migrations, seeding, build, e2e tests, and commitlint. Keep your branch in sync with `develop` to avoid merge conflicts.
 
-## Release automation
-`release-please` manages versioning and changelog. Do not edit `CHANGELOG.md` manually; instead, label PRs correctly (`feat`, `fix`, etc.) so the release notes are generated automatically.
+## Release Automation
+`release-please` manages semantic versioning and changelog updates. Do not edit `CHANGELOG.md` manually; label pull requests correctly (`feat`, `fix`, etc.) so release notes are generated automatically.
 
-## Repository hygiene
-- Labels are synchronized via `.github/labels.yml`. If you need new labels, update that file and run the labels sync workflow.
+## Repository Hygiene
+- Labels are synchronized through `.github/labels.yml`. Update that file and rerun the sync workflow if new labels are required.
 - CODEOWNERS assigns reviewers automatically—check `.github/CODEOWNERS` before adding new modules.
 
 ## Credits
 Created and maintained by **Aidamir Kambiev** (Resolve Studio). Contributors are recognized via GitHub insights and may add themselves to `AUTHORS.md` for significant contributions.
 
-## Support & issues
-Useissues
-Use [GitHub Issues](https://github.com/ResolveStudioIO/rs-nest-template/issues) for bug reports and discussions. Mention reproduction steps, Node/PNPM versions, and relevant logs.
+## Support & Issues
+Use [GitHub Issues](https://github.com/ResolveStudioIO/rs-nest-template/issues) for bug reports and discussions. Provide reproduction steps, Node/PNPM versions, and relevant logs.

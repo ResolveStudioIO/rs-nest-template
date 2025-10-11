@@ -6,59 +6,32 @@
 
 # rs-nest-template
 
-A ready-to-use **NestJS + Prisma** template with batteriesbatteries included: CIincluded: CI, Docker,Docker, release automationrelease automation, and GitHubGitHub repository hygienerepository hygiene.
+A ready-to-run **NestJS + Prisma** starter that ships with battle-tested tooling: CI, Docker, release automation, and repository hygiene.
 
 ## Features
-- **NestJS 11** with global `ValidationPipe`, enhanced configuration validation, and sensible defaults for security (helmet, compression, rate limiting).
-- **Prisma ORM** with PostgreSQL, migrations, seeding script, and a global Prisma service that handles graceful shutdown.
-- **Swagger** auto-generated docs at `/api/docs` with typed DTOs separated from Prisma models.
-- **Testing setup** using Jest (unit) and e2e tests with Supertest and an in-memory database seed.
-- **Code quality** enforced by ESLint (flat config), Prettier, Husky hooks, lint-staged, and Commitlint.
-- **GitHub automation**: CI pipeline, label sync, issue/PR templates, release-please.
-- **Docker / Compose** for local development with PostgreSQL.
+- **NestJS 11** with a global `ValidationPipe`, opinionated security defaults (helmet, compression, throttling), and graceful shutdown hooks.
+- **Prisma ORM** for PostgreSQL with migrations, seeding, and a reusable Prisma service module.
+- **API documentation** via Swagger at `/api/docs`, with DTOs separated from Prisma models.
+- **Testing toolchain** powered by Jest for unit tests and Supertest for e2e checks (seeded in-memory database).
+- **Code quality gates** enforced by ESLint (flat config), Prettier, Husky, lint-staged, and Commitlint.
+- **GitHub automations** for CI, label sync, release-please, and repository templates.
+- **Container-ready** Dockerfile and Compose setup for local development with PostgreSQL.
 
 ## Project structure
 ```text
 src/
-  app.module.ts        # Root module with global providers
-  main.ts              # Application bootstrap, CORS, Swagger, shutdown hooks
-  common/filters       # Global HttpException filter
-  config/              # Environment validation schema
-  example/             # Sample feature module with DTOs, use case, types
-  prisma/              # PrismaService (global) and module
+  app.module.ts        # Root module with global providers and filters
+  main.ts              # Bootstrap: CORS, Swagger, shutdown hooks
+  common/              # Exception filters and shared utilities
+  config/              # Environment validation schemas
+  example/             # Sample feature module (DTOs, use cases, types)
+  prisma/              # Prisma service + module used across features
 prisma/
   schema.prisma        # Database schema
-  seed.ts              # Seed script for local/e2e usage
+  seed.ts              # Seed script for local + e2e environments
 .github/
-  workflows/           # CI, labels sync, release automation
-  ISSUE_TEMPLATE/      # Issue forms
-  PULL_REQUEST_TEMPLATE.md
-Dockerfile, compose.yaml, tsconfig*.json, etc.
-```
-## Features
-- **NestJS 11** with global `ValidationPipe`, enhanced configuration validation, and sensible defaults for security (helmet, compression, rate limiting).
-- **Prisma ORM** with PostgreSQL, migrations, seeding script, and a global Prisma service that handles graceful shutdown.
-- **Swagger** auto-generated docs at `/api/docs` with typed DTOs separated from Prisma models.
-- **Testing setup** using Jest (unit) and e2e tests with Supertest and an in-memory database seed.
-- **Code quality** enforced by ESLint (flat config), Prettier, Husky hooks, lint-staged, and Commitlint.
-- **GitHub automation**: CI pipeline, label sync, issue/PR templates, release-please.
-- **Docker / Compose** for local development with PostgreSQL.
-
-## Project structure
-```text
-src/
-  app.module.ts        # Root module with global providers
-  main.ts              # Application bootstrap, CORS, Swagger, shutdown hooks
-  common/filters       # Global HttpException filter
-  config/              # Environment validation schema
-  example/             # Sample feature module with DTOs, use case, types
-  prisma/              # PrismaService (global) and module
-prisma/
-  schema.prisma        # Database schema
-  seed.ts              # Seed script for local/e2e usage
-.github/
-  workflows/           # CI, labels sync, release automation
-  ISSUE_TEMPLATE/      # Issue forms
+  workflows/           # CI, label sync, release automation
+  ISSUE_TEMPLATE/      # Issue forms (bug report, feature request)
   PULL_REQUEST_TEMPLATE.md
 Dockerfile, compose.yaml, tsconfig*.json, etc.
 ```
@@ -67,115 +40,75 @@ Dockerfile, compose.yaml, tsconfig*.json, etc.
 - **Node.js** 22.17.0
 - **pnpm** 10.17.1
 - **PostgreSQL** 16+
-- **PostgreSQL** 16+
-Versions are pinned in CI and Docker images.
 
-## GettingGetting startedstarted
+Versions are pinned in CI and Docker images to keep local and remote environments consistent.
+
+## Getting started
 1. Install dependencies:
    ```bash
    pnpm install
    ```
-2. CopyCopy environment variables and adjust them for your setupvariables and adjust them for your setup:
-
+2. Copy the example environment file and adjust values:
    ```bash
    cp .env.example .env
    ```
-3. RunRun databasedatabase migrations and seed datamigrations and seed data:
-
+3. Prepare the database:
    ```bash
    pnpm prisma:generate
    pnpm prisma:migrate
    pnpm prisma:seed
    ```
-44. StartStart the application in watch modeapplication in watch mode:
-
+4. Start the application in watch mode:
    ```bash
    pnpm start:dev
    ```
-5. Open [http://localhost:3000/api/docs](http://localhost:3000/api/docs) for Swagger UI.
+5. Open Swagger UI at [http://localhost:3000/api/docs](http://localhost:3000/api/docs).
 
-###### DockerDocker Compose
-LaunchCompose
-Launch APIAPI and PostgreSQL via Dockerand PostgreSQL via Docker:
+### Docker Compose
+Spin up the API alongside PostgreSQL:
 ```bash
 docker compose up --build
 ```
-The compose file waits for the database to be healthy and sets `DATABASE_URL` for the API container automatically.
-```bash
-docker compose up --build
-```
-The compose file waits for the database to be healthy and sets `DATABASE_URL` for the API container automatically.
+The service waits for the database to become healthy and injects `DATABASE_URL` automatically.
 
-###### RunningRunning tests and linters
+### Tests & linting
 ```bash
 pnpm lint            # ESLint with --max-warnings=0
-pnpm lint:fix        # ESLint autofix
+pnpm lint:fix        # ESLint autofix pass
 pnpm test            # Unit tests
-pnpm test:e2e        # End-to-end tests (requires PostgreSQL, e.g. via docker compose)
-```
-tests and linters
-```bash
-pnpm lint            # ESLint with --max-warnings=0
-pnpm lint:fix        # ESLint autofix
-pnpm test            # Unit tests
-pnpm test:e2e        # End-to-end tests (requires PostgreSQL, e.g. via docker compose)
+pnpm test:e2e        # End-to-end tests (requires a PostgreSQL instance)
 ```
 
 ## Configuration
-The template relies on strong environment validation (`src/config/src/config/env.validation.ts`). Key variables:
-- `NODE_ENVvalidation.ts`). Key variables:
+Environment variables are validated in `src/config/env.validation.ts`. Key options:
 - `NODE_ENV` — `development` | `test` | `production`
-- `PORT` — HTTP port, numeric
-- `CORS_ORIGIN` — comma-separated list of allowed origins (`*` allowed)
-- `DATABASE_URL` — full PostgreSQL connection string
-- `THROTTLER_TTL`, `THROTTLER_LIMIT` — rate limiting configuration— `development` | `test` | `production`
-- `PORT` — HTTP port, numeric
-- `CORS_ORIGIN` — comma-separated list of allowed origins (`*` allowed)
+- `PORT` — HTTP port for the Nest application
+- `CORS_ORIGIN` — comma-separated list of allowed origins (`*` allowed in dev)
 - `DATABASE_URL` — full PostgreSQL connection string
 - `THROTTLER_TTL`, `THROTTLER_LIMIT` — rate limiting configuration
 
-SeeSee `.env.example.env.example` for defaults and comments. On CI, `.env.env` isis generatedgenerated automaticallyautomatically beforebefore runningrunning migrationsmigrations andand tests.tests.
+Refer to `.env.example` for defaults. CI generates `.env` automatically before migrations and tests.
 
-## AutomationAutomation & CI/CD
-- **CI workflow** (`.github/workflows/ci.yml`) runs lint, migrations, seed, build, e2e tests, and commitlint on `production` branch pushes and pull requests.
-- **Labels sync** (`labels-sync.yml`) keeps repository labels consistent using `.github/labels.yml`.
-- **Release-please** automates versioning and changelog generation; configure it via `release-please-config.json`.
-- **Husky hooks** ensure lint-staged and commitlint run locally before commits.CI/CD
-- **CI workflow** (`.github/workflows/ci.yml`) runs lint, migrations, seed, build, e2e tests, and commitlint on `production` branch pushes and pull requests.
-- **Labels sync** (`labels-sync.yml`) keeps repository labels consistent using `.github/labels.yml`.
-- **Release-please** automates versioning and changelog generation; configure it via `release-please-config.json`.
-- **Husky hooks** ensure lint-staged and commitlint run locally before commits.
+## Automation & repository hygiene
+- **CI** (`.github/workflows/ci.yml`) runs linting, migrations, seeds, build, e2e tests, and commitlint on pull requests and `production` pushes.
+- **Labels sync** keeps repository labels aligned with `.github/labels.yml`.
+- **Release-please** handles semantic versioning and changelog generation.
+- **Husky** hooks run lint-staged formatting and Commitlint before commits land in the repo.
 
-## Extending the template
-- Add new modules under `src/<feature>` following the Example module pattern (DTOs, types, use cases).
-- Prisma models live in `prisma/schema.prisma`; run `pnpm prisma:generate` after changes.
-- To customize Swagger (title/description/version), edit the builder in `src/main.ts`.
-- For additional global providers (filters, interceptors, guards), register them in `app.module.ts`.
-- To change rate limiting policy or throttler exceptions, update `ThrottlerModule.forRootAsync` in `app.module.ts`.
-##Developmentworkflow- Branch offdevelopusingthenaming convention from [`CONTRIBUTING.md`](./CONTRIBUTING.md).- Open pull requests intodevelop.Oncetherelease is stable, create a PR `develop → production`.- For hotfixes, branch fromproduction,release,thenback-merge intodevelop.
+## Development workflow
+- Branch from `develop` using the convention from [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+- Open pull requests into `develop`. When the release is ready, merge `develop → production`.
+- For hotfixes, branch from `production`, release, then back-merge into `develop`.
+
 ## Troubleshooting
-- **Database connection errors**: ensure PostgreSQL is running and `DATABASE_URL` points to the correct host (in Docker, host is `db`).
-- **e2e tests failing on user count**: the test seeds its own data; if you modify the seed, adjust the expectations in `test/example.e2e-spec.ts`.
-- **CORS issues**: double-check `CORS_ORIGIN` formatting (comma-separated, no spaces) or set to `*` for development.
-## Extending the template
-- Add new modules under `src/<feature>` following the Example module pattern (DTOs, types, use cases).
-- Prisma models live in `prisma/schema.prisma`; run `pnpm prisma:generate` after changes.
-- To customize Swagger (title/description/version), edit the builder in `src/main.ts`.
-- For additional global providers (filters, interceptors, guards), register them in `app.module.ts`.
-- To change rate limiting policy or throttler exceptions, update `ThrottlerModule.forRootAsync` in `app.module.ts`.
-## Troubleshooting
-- **Database connection errors**: ensure PostgreSQL is running and `DATABASE_URL` points to the correct host (in Docker, host is `db`).
-- **e2e tests failing on user count**: the test seeds its own data; if you modify the seed, adjust the expectations in `test/example.e2e-spec.ts`.
-- **CORS issues**: double-check `CORS_ORIGIN` formatting (comma-separated, no spaces) or set to `*` for development.
+- **Database connection errors**: ensure PostgreSQL is running and `DATABASE_URL` points to the correct host (Docker uses `db`).
+- **Failing e2e tests**: each test seeds its own data; update expectations in `test/example.e2e-spec.ts` if you modify the seed.
+- **CORS issues**: confirm `CORS_ORIGIN` formatting (comma-separated, no spaces) or use `*` for local development.
 
-## Contributing
-Please readPlease read [`CONTRIBUTING.md`](./CONTRIBUTING.md) for branching strategy, commit conventions, and contributioncontribution guidelinesguidelines. KeyKey points:
-points:
-- FeatureFeature branchesbranches followfollow `RSNT-<ISSUE>-<slug>``RSNT-<ISSUE>-<slug>` naming.
--naming.
-- CommitsCommits useuse [ConventionalConventional CommitsCommits](https://wwwwww.conventionalcommits.orgconventionalcommits.org/).
-- Before opening a PR, run `pnpm lint`, `pnpm test`, `pnpm test:e2e`.
-- PR template includes a checklist; automation (release-please, labels sync) will run automatically.
+## Contributors
+<a href="https://github.com/ResolveStudioIO/rs-nest-template/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ResolveStudioIO/rs-nest-template" alt="Contributors" />
+</a>
 
-## License
-MIT License © 2025 Resolve Studio. See [LICENSE](./LICENSE) for details.
+## Credits
+Created and maintained by **Aidamir Kambiev** (Resolve Studio). See [LICENSE](./LICENSE) for details.
